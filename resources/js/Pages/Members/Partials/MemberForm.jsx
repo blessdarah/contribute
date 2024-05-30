@@ -3,8 +3,9 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from '@inertiajs/react'
 
-export function MemberForm() {
-    const { data, setData, post, processing, errors, reset } = useForm({
+export function MemberForm({ member }) {
+    const parts = ['soprano', 'alto', 'tenor', 'bass'];
+    const { put, data, setData, post, processing, errors, reset } = useForm(member || {
         first_name: '',
         last_name: '',
         contact: '',
@@ -16,10 +17,15 @@ export function MemberForm() {
 
     function onFinish(e) {
         e.preventDefault();
-
-        post(route('members.store'), {
-            onFinish: reset()
-        });
+        if (member) {
+            put(route('members.update', member.id), {
+                onSuccess: alert('working')
+            })
+        } else {
+            post(route('members.store'), {
+                onFinish: reset()
+            });
+        }
     }
 
     return (
@@ -49,19 +55,21 @@ export function MemberForm() {
                 </div>
                 <div>
                     <InputLabel htmlFor="gender" value="Gender" className="mb-2" />
-                    <select name="gender" id="gender" onChange={e => setData('gender', e.target.value)} className="w-full rounded-md bg-gray-900 border border-gray-700">
-                        <option value="male">male</option>
-                        <option value="female">female</option>
+                    <select name="gender" id="gender" value={data.gender} onChange={e => setData('gender', e.target.value)}
+                        className="w-full rounded-md dark:bg-gray-900 border border-gray-300 dark:border-gray-700">
+                        {['male', 'female'].map((gender, index) => (
+                            <option value={gender} key={index} >{gender}</option>
+                        ))}
                     </select>
                     {errors.gender && <span className="text-xs text-red-400">{errors.gender}</span>}
                 </div>
                 <div>
                     <InputLabel htmlFor="music_part" value="Music part" className="mb-2" />
-                    <select name="music_part" id="music_part" onChange={e => setData('music_part', e.target.value)} className="w-full rounded-md bg-gray-900 border border-gray-700">
-                        <option value="soprano">soprano</option>
-                        <option value="alto">alto</option>
-                        <option value="tenor">tenor</option>
-                        <option value="bass">bass</option>
+                    <select name="music_part" id="music_part" value={data.music_part} onChange={e => setData('music_part', e.target.value)}
+                        className="w-full rounded-md dark:bg-gray-900 border border-gray-300 dark:border-gray-700">
+                        {parts.map((item, index) => (
+                            <option value={item} key={index}>{item}</option>
+                        ))}
                     </select>
                 </div>
             </div>
