@@ -16,25 +16,25 @@ export function MembersTable({ members }) {
     }
 
     return (
-        <div class="p-2">
-            <TextInput type="search" onChange={handleSearch} className="py-1 mb-3" placeholder="Search by name..." />
-            <table className="table-auto w-full border rounded border-collapse">
+        <div className="bg-white rounded-md">
+            <TextInput type="search" onChange={handleSearch} className="m-2 py-2" placeholder="Search by name..." />
+            <table className="table-auto w-full">
                 <thead>
-                    <tr>
-                        <th className="dark:text-white dark:border-gray-700 border"> Name</th>
-                        <th className="dark:text-white dark:border-gray-700 border"> Address</th>
-                        <th className="dark:text-white dark:border-gray-700 border"> Contact</th>
-                        <th className="dark:text-white dark:border-gray-700 border"> Music Part</th>
+                    <tr className="text-left border-t">
+                        <th className="p-2"> Name</th>
+                        <th className="p-2"> Address</th>
+                        <th className="p-2"> Contact</th>
+                        <th className="p-2"> Music Part</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="text-gray-600">
                     {tableData.map((member, index) => (
                         <tr onClick={() => router.get(`members/${member.id}`)} key={index}
-                            className="cursor-pointer hover:even:bg-gray-300 hover:odd:bg-gray-200 dark:even:bg-gray-700 even:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 text-gray-700">
-                            <td className="dark:border-gray-700 border p-2">{member.first_name} {member.last_name}</td>
-                            <td className="dark:border-gray-700 border p-2">{member?.address ?? 'unknown'}</td>
-                            <td className="dark:border-gray-700 border p-2">{member?.contact}</td>
-                            <td className="dark:border-gray-700 border p-2">{member?.music_part}</td>
+                            className="border-t cursor-pointer hover:bg-gray-100">
+                            <td className="p-2">{member.first_name} {member.last_name}</td>
+                            <td className="p-2">{member?.address ?? 'unknown'}</td>
+                            <td className="p-2">{member?.contact}</td>
+                            <td className="p-2">{member?.music_part}</td>
                         </tr>
                     ))}
                 </tbody>

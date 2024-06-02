@@ -12,7 +12,7 @@ class MemberController extends Controller
     public function index()
     {
         return Inertia::render('Members/Index')->with([
-            'members' => Member::latest()->get()
+            'members' => Member::latest()->paginate(10)
         ]);
 
     }
@@ -38,7 +38,7 @@ class MemberController extends Controller
     {
         $data = $request->validated();
         $member->update($data);
-        return redirect()->back();
+        return to_route('members.show', compact('member'));
     }
 
     public function destroy(Member $member)

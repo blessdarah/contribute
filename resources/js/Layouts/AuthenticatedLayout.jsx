@@ -4,6 +4,7 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
+import { Toaster } from 'react-hot-toast';
 
 export default function Authenticated({ user, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -26,6 +27,12 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
                                 <NavLink href={route('members.index')} active={route().current('members.index') || route().current('members.show') || route().current('members.edit')}>
                                     Members
+                                </NavLink>
+                                <NavLink href={route('categories.index')} active={route().current('categories.index')}>
+                                    Categories
+                                </NavLink>
+                                <NavLink href={route('projects.index')} active={route().current('projects.index') || route().current('projects.show') || route().current('projects.edit')}>
+                                    Projects
                                 </NavLink>
                             </div>
                         </div>
@@ -123,6 +130,7 @@ export default function Authenticated({ user, header, children }) {
             )}
 
             <main>{children}</main>
+            <Toaster />
         </div>
     );
 }

@@ -18,9 +18,7 @@ export function MemberForm({ member }) {
     function onFinish(e) {
         e.preventDefault();
         if (member) {
-            put(route('members.update', member.id), {
-                onSuccess: alert('working')
-            })
+            put(route('members.update', member.id))
         } else {
             post(route('members.store'), {
                 onFinish: reset()

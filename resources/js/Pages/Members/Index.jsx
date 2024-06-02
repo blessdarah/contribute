@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, Link } from '@inertiajs/react';
 import { MembersTable } from './Partials/MembersTable';
+import { Pagination } from '@/Components/Pagination';
 
 export default function MembersIndex({ auth, members }) {
     return (
@@ -16,8 +17,9 @@ export default function MembersIndex({ auth, members }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <MembersTable members={members} />
+                        <MembersTable members={members.data} />
                     </div>
+                    <Pagination links={members.links} />
                 </div>
             </div>
         </AuthenticatedLayout>
