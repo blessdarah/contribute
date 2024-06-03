@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProjectRequest;
+use App\Models\Category;
 use App\Models\Project;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ProjectController extends Controller
@@ -13,13 +13,15 @@ class ProjectController extends Controller
     {
         return Inertia::render('Projects/Index')
             ->with([
-                'projects' => Project::paginate(10)
+                'projects' => Project::with('category')->paginate(10)
             ]);
     }
 
     public function create()
     {
-        return Inertia::render('Projects/Create');
+        return Inertia::render('Projects/Create')->with([
+            ''
+        ]);
     }
 
     public function store(ProjectRequest $request)
@@ -31,10 +33,11 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return Inertia::render('Projects/Edit', compact('project'));
+        $categories = Category::all();
+        return Inertia::render('Projects/Edit', compact('project', 'categories'));
     }
 
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
         $data = $request->validated();
         $project->update($data);

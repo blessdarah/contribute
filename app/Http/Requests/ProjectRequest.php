@@ -24,7 +24,8 @@ class ProjectRequest extends FormRequest
         return [
             'status' => 'string|required',
             'description' => 'required|string',
-            'target_amount' => 'nullable'
+            'target_amount' => 'nullable|numeric|min:0',
+            'category_id' => 'nullable',
         ];
     }
 }

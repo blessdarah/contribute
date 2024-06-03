@@ -11,7 +11,7 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $fillable = ['status', 'description', 'target_amount'];
+    protected $fillable = ['category_id', 'status', 'description', 'target_amount'];
 
     public function category()
     {

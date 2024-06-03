@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContributionController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
@@ -28,6 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('members', MemberController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('projects', ProjectController::class);
+    Route::resource('contributions', ContributionController::class);
 });
 
 require __DIR__.'/auth.php';
