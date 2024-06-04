@@ -37,7 +37,7 @@ export function ProjectForm({ project, categories }) {
                 {errors.description && <span className="text-xs text-red-400">{errors.description}</span>}
             </div>
             <div>
-                <InputLabel htmlFor="target_amount" value="target_amount" className="mb-2" />
+                <InputLabel htmlFor="target_amount" value="Target amount" className="mb-2" />
                 <TextInput type="number" min={0} name="target_amount" id="target_amount" value={data.target_amount}
                     onChange={e => setData('target_amount', e.target.value)} className="w-full" />
                 {errors.target_amount && <span className="text-xs text-red-400">{errors.target_amount}</span>}

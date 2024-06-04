@@ -14,7 +14,7 @@ class ContributionController extends Controller
     {
         return Inertia::render('Contributions/Index')
             ->with([
-                'contributions' => Contribution::with('project')->paginate(10)
+                'contributions' => Contribution::with('project', 'member')->paginate(10)
             ]);
     }
 
@@ -28,7 +28,14 @@ class ContributionController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'amount' => 'required|numeric|min:0',
+            'date' => 'nullable',
+            'project_id' => 'nullable',
+            'description' => 'nullable',
+            'member_id' => 'required'
+        ]);
+        // dd($data);
         Contribution::create($data);
         return to_route('contributions.index');
     }

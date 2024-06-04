@@ -15,4 +15,14 @@ class Member extends Model
         'first_name', 'last_name', 'gender', 'contact',
         'address', 'music_part', 'group_post'
     ];
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function contributions()
+    {
+        return $this->hasMany(Contribution::class);
+    }
 }

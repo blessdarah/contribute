@@ -2,8 +2,9 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import { MemberForm } from './Partials/MemberForm';
+import { ContributionsTable } from '../Contributions/Partials/ContributionsTable';
 
-export default function MemberShow({ auth, member }) {
+export default function MemberShow({ auth, member, contributions }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -21,10 +22,8 @@ export default function MemberShow({ auth, member }) {
                             <MemberForm member={member} />
                         </div>
                     </div>
-                    <div className="mt-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900 dark:text-gray-100">
-                            <h3>Create contribution</h3>
-                        </div>
+                    <div className="mt-4">
+                        <ContributionsTable contributions={contributions} />
                     </div>
                 </div>
             </div>

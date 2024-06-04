@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MemberRequest;
+use App\Models\Contribution;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -31,7 +32,12 @@ class MemberController extends Controller
 
     public function show(Member $member)
     {
-        return Inertia::render('Members/Show')->with('member', $member);
+        return Inertia::render('Members/Show')->with([
+            'member' => $member,
+            'contributions' => Contribution::with('member', 'project')
+                ->where('member_id', $member->id)
+                ->paginate(10)
+        ]);
     }
 
     public function update(MemberRequest $request, Member $member)
