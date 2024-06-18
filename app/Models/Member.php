@@ -13,12 +13,12 @@ class Member extends Model
 
     protected $fillable = [
         'first_name', 'last_name', 'gender', 'contact',
-        'address', 'music_part', 'group_post'
+        'address', 'music_part', 'group_post',
     ];
 
     public function getNameAttribute()
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     public function contributions()

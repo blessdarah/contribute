@@ -14,7 +14,7 @@ class Contribution extends Model
     protected $fillable = ['project_id', 'member_id', 'amount', 'description', 'date'];
 
     protected $casts = [
-        'date' => 'date'
+        'date' => 'date',
     ];
 
     public function project()

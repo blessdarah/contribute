@@ -14,7 +14,7 @@ class ContributionController extends Controller
     {
         return Inertia::render('Contributions/Index')
             ->with([
-                'contributions' => Contribution::with('project', 'member')->paginate(10)
+                'contributions' => Contribution::with('project', 'member')->paginate(10),
             ]);
     }
 
@@ -33,10 +33,11 @@ class ContributionController extends Controller
             'date' => 'nullable',
             'project_id' => 'nullable',
             'description' => 'nullable',
-            'member_id' => 'required'
+            'member_id' => 'required',
         ]);
         // dd($data);
         Contribution::create($data);
+
         return to_route('contributions.index');
     }
 
@@ -50,12 +51,14 @@ class ContributionController extends Controller
     {
         $data = $request->validated();
         $contribution->update($data);
+
         return to_route('contributions.index');
     }
 
     public function destroy(Contribution $contribution)
     {
         $contribution->delete();
+
         return to_route('contributions.index');
     }
 }

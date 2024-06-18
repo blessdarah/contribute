@@ -1,16 +1,22 @@
-import PrimaryButton from '@/Components/PrimaryButton';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
-import { CategoryForm } from './Partials/CategoryForm';
+import PrimaryButton from "@/Components/PrimaryButton";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { Head } from "@inertiajs/react";
+import { CategoryForm } from "./Partials/CategoryForm";
 
 export default function CategoryCreate({ auth }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
-            header={<div className="flex justify-between items-center">
-                <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Create member</h2>
-                <PrimaryButton onClick={() => window.history.back()}>back</PrimaryButton>
-            </div>}
+            header={
+                <div className="flex justify-between items-center">
+                    <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                        Create member
+                    </h2>
+                    <PrimaryButton onClick={() => window.history.back()}>
+                        back
+                    </PrimaryButton>
+                </div>
+            }
         >
             <Head title="Categories" />
 

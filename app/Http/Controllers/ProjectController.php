@@ -13,14 +13,14 @@ class ProjectController extends Controller
     {
         return Inertia::render('Projects/Index')
             ->with([
-                'projects' => Project::with('category')->paginate(10)
+                'projects' => Project::with('category')->paginate(10),
             ]);
     }
 
     public function create()
     {
         return Inertia::render('Projects/Create')->with([
-            'categories' => Category::all()
+            'categories' => Category::all(),
         ]);
     }
 
@@ -28,12 +28,14 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         Project::create($data);
+
         return to_route('projects.index');
     }
 
     public function edit(Project $project)
     {
         $categories = Category::all();
+
         return Inertia::render('Projects/Edit', compact('project', 'categories'));
     }
 
@@ -41,13 +43,14 @@ class ProjectController extends Controller
     {
         $data = $request->validated();
         $project->update($data);
+
         return to_route('projects.index');
     }
 
     public function destroy(Project $project)
     {
         $project->delete();
+
         return to_route('projects.index');
     }
-
 }

@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         return Inertia::render('Categories/Index')
             ->with([
-                'categories' => Category::paginate(10)
+                'categories' => Category::paginate(10),
             ]);
     }
 
@@ -25,9 +25,10 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'name' => 'string|required',
-            'description' => 'nullable'
+            'description' => 'nullable',
         ]);
         Category::create($data);
+
         return to_route('categories.index');
     }
 
@@ -40,15 +41,17 @@ class CategoryController extends Controller
     {
         $data = $request->validate([
             'name' => 'string|required',
-            'description' => 'nullable'
+            'description' => 'nullable',
         ]);
         $category->update($data);
+
         return to_route('categories.index');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
+
         return to_route('categories.index');
     }
 }
